@@ -6,15 +6,15 @@ using PyPlot
 # create training data
 N = 10000
 x1 = randn(N)
-y1 = rand(N)
+y1 = zero(x1)
 
 train = hcat(x1,y1)
 
 # intialise
 
-nx = 50
-ny = 2
-global som = initSOM(train,nx,ny,topol=:hexagonal)
+nx = 20
+ny = 1
+global som = initSOM(train,nx,ny,topol=:rectangular)
 
 inicodes = deepcopy(som.grid)
 inicodes[:,1] /= maximum(inicodes[:,1])
@@ -38,7 +38,7 @@ ioff()
 
 fig,ax = subplots(1,1)
 
-ax.plot(train[:,1],train[:,2],".",ms=3,alpha=0.1)
+ax.plot(train[:,1],train[:,2],"C0.",ms=3,alpha=0.1)
 
 # add grid in x direction
 lx = Array{PyCall.PyObject,1}(undef,ny)
@@ -55,8 +55,7 @@ for i in 1:nx
     global ly[i], = ax.plot(som.codes[i:nx:end,1],som.codes[i:nx:end,2],"k",lw=1)
 end
 
-#lnodes, = ax.plot(som.codes[:,1],som.codes[:,2],"w.",ms=1,markeredgecolor="k")
-ax.scatter(som.codes[:,1],som.codes[:,2],40,som.population,edgecolor="k",cmap="rainbow",zorder=10)
+lnodes, = ax.plot(som.codes[:,1],som.codes[:,2],"w.",ms=10,markeredgecolor="k")
 tight_layout()
 savefig("/local/home/kloewer/somdata/frames/frame0000.png")
 
