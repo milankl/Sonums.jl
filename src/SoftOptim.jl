@@ -10,7 +10,10 @@ import Base: Float64, Float32, Float16, Int32, Int64,
     exp, exp2, exp10, log, log2, log10, cos, sin, tan,
     expm1,log1p
 
+using Random
+
 include("typedef.jl")
 include("conversions.jl")
+include("arithmetics.jl")
 
 end

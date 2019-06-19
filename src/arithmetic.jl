@@ -1,9 +1,9 @@
 # One argument operations
-nextfloat(p::Posit8) = reinterpret(Posit8,reinterpret(UInt8,p)+one(UInt8))
-nextfloat(p::Posit16) = reinterpret(Posit16,reinterpret(UInt16,p)+one(UInt16))
+nextfloat(p::Optim8) = reinterpret(Optim8,reinterpret(UInt8,p)+one(UInt8))
+nextfloat(p::Optim16) = reinterpret(Optim16,reinterpret(UInt16,p)+one(UInt16))
 
-prevfloat(p::Posit8) = reinterpret(Posit8,reinterpret(UInt8,p)-one(UInt8))
-prevfloat(p::Posit16) = reinterpret(Posit16,reinterpret(UInt16,p)-one(UInt16))
+prevfloat(p::Optim8) = reinterpret(Optim8,reinterpret(UInt8,p)-one(UInt8))
+prevfloat(p::Optim16) = reinterpret(Optim16,reinterpret(UInt16,p)-one(UInt16))
 
 function -(x::Optim8)
     if x == 0x00 || x == 0x80 # don't change sign for 0 and NaR
