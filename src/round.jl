@@ -17,6 +17,10 @@ function OptimBounds(x::Array{Float64,1})
     return bounds
 end
 
-function round2optim(x::Float64,opt::Array{Float64,1},bounds::Array{Float64,1})
-    return opt[argmin(x .>= bounds)]
+# function round2optim(x::Float64,opt::Array{Float64,1},bounds::Array{Float64,1})
+#     return opt[argmin(x .>= bounds)]
+# end
+
+function round2optim(x::Float64,bounds::Array{Float64,1})
+    return UInt8(argmin(x .>= bounds))
 end

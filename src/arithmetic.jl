@@ -21,11 +21,37 @@ function -(x::Optim16)
     end
 end
 
+function abs(x::Optim8)
+    if UInt8(x) > 0x80  # negative number reverse sign bit
+        return Optim8(UInt8(x) + 0x80)
+    else
+        return x
+    end
+end
+
+function abs(x::Optim16)
+    if UInt16(x) > 0x8000  # negative number reverse sign bit
+        return Optim16(UInt16(x) + 0x8000)
+    else                  # positive number or 0 or NaR
+        return x
+    end
+end
+
 
 function *(x::Optim8,y::Optim8)
-
-    #TODO some if clauses based on sign
-    TableMul[UInt8(x),UInt8(y)]
+    if signbit(x)
+        if signbit(y)
+            return TableMul[UInt8(-x),UInt8(-y)]
+        else
+            return -TableMul[UInt8(-x),UInt8(y)]
+        end
+    else
+        if signbit(y)
+            return -TableMul[UInt8(x),UInt8(-y)]
+        else
+            return TableMul[UInt8(x),UInt8(y)]
+        end
+    end
 end
 
 function +(x::Optim8,y::Optim8)
