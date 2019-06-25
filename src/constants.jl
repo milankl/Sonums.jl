@@ -1,11 +1,23 @@
 zero(::Optim8) = Optim8(0x00)
 zero(::Optim16) = Optim16(0x00)
 
-#TODO define Optim one
+one(::Optim8) = Optim8(1.0)
+one(::Optim16) = Optim16(1.0)
+
+minusone(::Optim8) = Optim8(-1.0)
+minusone(::Optim16) = Optim16(-1.0)
 
 notareal(::Optim8) = Optim8(0x80)
 notareal(::Optim16) = Optim16(0x8000)
 notareal(x::AbstractOptim) = notareal(typeof(x))
+
+floatmin(::Optim8) = Optim8(0x01)
+floatmax(::Optim8) = Optim8(0x7F)
+
+floatmin(::Optim16) = Optim16(0x0001)
+floatmax(::Optim16) = Optim16(0x7FFF)
+floatmin(x::AbstractOptim) = floatmin(typeof(x))
+floatmax(x::AbstractOptim) = floatmax(typeof(x))
 
 function signbit(x::Optim8)
     if UInt8(x) >= 0x80
@@ -16,7 +28,7 @@ function signbit(x::Optim8)
 end
 
 function signbit(x::Optim16)
-    if UInt8(x) >= 0x8000
+    if UInt16(x) >= 0x8000
         return true
     else
         return false

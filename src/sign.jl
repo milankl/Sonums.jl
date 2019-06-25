@@ -16,7 +16,7 @@ end
 function -(x::Optim16)
     if x == 0x0000 || x == 0x8000 # don't change sign for 0 and NaR
         return x
-    else
+    else    # flip sign bit by adding 2^15
         return Optim16(UInt16(x) + 0x8000)
     end
 end
@@ -35,39 +35,4 @@ function abs(x::Optim16)
     else                  # positive number or 0 or NaR
         return x
     end
-end
-
-
-function *(x::Optim8,y::Optim8)
-    if signbit(x)
-        if signbit(y)
-            return TableMul[UInt8(-x),UInt8(-y)]
-        else
-            return -TableMul[UInt8(-x),UInt8(y)]
-        end
-    else
-        if signbit(y)
-            return -TableMul[UInt8(x),UInt8(-y)]
-        else
-            return TableMul[UInt8(x),UInt8(y)]
-        end
-    end
-end
-
-function +(x::Optim8,y::Optim8)
-
-    #TODO some if clauses based on sign
-    TableAdd[UInt8(x),UInt8(y)]
-end
-
-function -(x::Optim8,y::Optim8)
-
-    #TODO some if clauses based on sign
-    TableSub[UInt8(x),UInt8(y)]
-end
-
-function /(x::Optim8,y::Optim8)
-
-    #TODO some if clauses based on sign
-    TableDiv[UInt8(x),UInt8(y)]
 end
