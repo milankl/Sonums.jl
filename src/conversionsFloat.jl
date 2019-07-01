@@ -13,9 +13,9 @@ end
 function Optim16(x::Float64)
     if isfinite(x)
         if signbit(x)
-            return -Optim16(UInt16(argmin(-x .>= bounds16)))
+            return -Optim16(UInt16(argmax(-x .< bounds16)-2))
         else
-            return Optim16(UInt16(argmin(x .>= bounds16)))
+            return Optim16(UInt16(argmax(x .< bounds16)-2))
         end
     else    # Inf, -Inf, and NaN
         return notareal(Optim16)

@@ -28,6 +28,8 @@ include("lookup_tables.jl")
 
 const TableMul8 = createTableMul(optim8)
 const TableAdd8 = createTableAdd(optim8)
+const TableSub8 = createTableSub(optim8)
+const TableDiv8 = createTableDiv(optim8)
 
 include("arithmetics.jl")
 
