@@ -8,16 +8,16 @@ prevfloat(p::Optim16) = reinterpret(Optim16,reinterpret(UInt16,p)-one(UInt16))
 function -(x::Optim8)
     if UInt8(x) == 0x00 || UInt8(x) == 0x80 # don't change sign for 0 and NaR
         return x
-    else    # flip sign bit by adding 2^7
-        return Optim8(UInt8(x) + 0x80)
+    else    # subtracting from 0x00 (two's complement def for neg)
+        return Optim8(0x00 - UInt8(x))
     end
 end
 
 function -(x::Optim16)
     if x == 0x0000 || x == 0x8000 # don't change sign for 0 and NaR
         return x
-    else    # flip sign bit by adding 2^15
-        return Optim16(UInt16(x) + 0x8000)
+    else    # subtracting from 0x0000 (two's complement def for neg)
+        return Optim16(0x0000 - UInt16(x))
     end
 end
 
