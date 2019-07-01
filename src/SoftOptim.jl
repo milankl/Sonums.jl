@@ -16,19 +16,20 @@ include("trainOptim.jl")
 include("conversionsInt.jl")
 include("sign.jl")
 include("print.jl")
-include("bounds.jl")
+include("constants.jl")
 
 data = randn(10_000_000)
 
 const optim8 = trainOptim(8,data)
 const bounds8 = OptimBounds(optim8)
 
-
 include("conversionsFloat.jl")
 include("lookup_tables.jl")
 
 const TableMul8 = createTableMul(optim8)
 const TableAdd8 = createTableAdd(optim8)
+const TableSub8 = createTableSub(optim8)
+const TableDiv8 = createTableDiv(optim8)
 
 include("arithmetics.jl")
 
