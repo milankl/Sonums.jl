@@ -100,7 +100,29 @@ function -(x::Optim16,y::Optim16)
 end
 
 function /(x::Optim8,y::Optim8)
+    return x*inv(y)
+end
 
-    #TODO some if clauses based on sign
-    TableDiv[UInt8(x),UInt8(y)]
+function sqrt(x::Optim8)
+    if signbit(x)
+        return notareal(Optim8)
+    else
+        return ListSqrt8[UInt8(x)+one(UInt8)]
+    end
+end
+
+function sqrt(x::Optim16)
+    if signbit(x)
+        return notareal(Optim16)
+    else
+        return ListSqrt16[UInt16(x)+one(UInt16)]
+    end
+end
+
+function inv(x::Optim8)
+    if signbit(x)
+        return -ListInv8[UInt8(-x)+one(UInt8)]
+    else
+        return ListInv8[UInt8(x)+one(UInt8)]
+    end
 end

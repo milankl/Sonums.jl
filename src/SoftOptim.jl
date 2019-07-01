@@ -7,7 +7,7 @@ import Base: Float64, Float32, Float16, Int32, Int64,
     (+), (-), (*), (/), (<), (<=), (==), sqrt,
     bitstring, round, one, zero, promote_rule, eps,
     floatmin, floatmax, signbit, sign, isfinite,
-    nextfloat, prevfloat, abs
+    nextfloat, prevfloat, abs, inv
 
 using Random
 
@@ -24,12 +24,16 @@ const optim8 = trainOptim(8,data)
 const bounds8 = OptimBounds(optim8)
 
 include("conversionsFloat.jl")
+include("lookup_lists.jl")
 include("lookup_tables.jl")
 
 const TableMul8 = createTableMul(optim8)
 const TableAdd8 = createTableAdd(optim8)
 const TableSub8 = createTableSub(optim8)
 const TableDiv8 = createTableDiv(optim8)
+
+const ListSqrt8 = createListSqrt(optim8)
+const ListInv8 = createListInv(optim8)
 
 include("arithmetics.jl")
 
