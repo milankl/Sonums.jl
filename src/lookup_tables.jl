@@ -23,10 +23,10 @@ end
 function createTableAdd(v::Array{Float64,1})
 
     n = length(v)
-    if n == 2^7-1   # 8bit case
+    if n == 2^7+1   # 8bit case
         table = Array{Optim8,2}(undef,n,n)
         Float2Optim = Optim8
-    elseif n == 2^15-1 # 16bit case
+    elseif n == 2^15+1 # 16bit case
         table = Array{Optim16,2}(undef,n,n)
         Float2Optim = Optim16
     else
