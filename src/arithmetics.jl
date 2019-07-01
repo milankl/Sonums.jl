@@ -1,15 +1,15 @@
 function *(x::Optim8,y::Optim8)
     if signbit(x)
         if signbit(y)
-            return TableMul8[UInt8(-x),UInt8(-y)]
+            return TableMul8[UInt8(-x)+one(UInt8),UInt8(-y)+one(UInt8)]
         else
             return -TableMul8[UInt8(-x),UInt8(y)]
         end
     else
         if signbit(y)
-            return -TableMul8[UInt8(x),UInt8(-y)]
+            return TableMul8[UInt8(x)+one(UInt8),UInt8(-y)+one(UInt8)]
         else
-            return TableMul8[UInt8(x),UInt8(y)]
+            return TableMul8[UInt8(x)+one(UInt8),UInt8(y)+one(UInt8)]
         end
     end
 end
