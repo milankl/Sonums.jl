@@ -12,6 +12,10 @@ function createTableMul(v::Array{Float64,1})
     end
 
     for i in 1:n
+        # if i % 1024 == 0
+        #     progress = i/1024 * 1/32
+        #     println("$progress%")
+        # end
         for j in 1:n
             table[i,j] = Float2Optim(v[i]*v[j])
         end

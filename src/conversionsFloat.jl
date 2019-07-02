@@ -23,7 +23,7 @@ function Optim16(x::Float64)
 end
 
 Float64(x::Optim8) = signbit(x) ? -optim8[UInt8(-x)+one(UInt8)] : optim8[UInt8(x)+one(UInt8)]
-Float64(x::Optim16) = signbit(x) ? -optim16[UInt16(x)+one(UInt16)] : optim16[UInt16(x)+one(UInt16)]
+Float64(x::Optim16) = signbit(x) ? -optim16[UInt16(-x)+one(UInt16)] : optim16[UInt16(x)+one(UInt16)]
 
 Float32(x::Optim8) = Float32(Float64(x))
 Float32(x::Optim16) = Float32(Float64(x))

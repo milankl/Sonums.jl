@@ -43,6 +43,7 @@ const ListInv8 = createListInv(optim8)
 const ListSqrt16 = createListSqrt(optim16)
 const ListInv16 = createListInv(optim16)
 
-include("arithmetics.jl")
+include("arithmetics8.jl")
+include("arithmetics16.jl")
 
 end
