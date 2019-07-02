@@ -35,3 +35,35 @@ function abs(x::Optim16)
         return x
     end
 end
+
+function signbit(x::Optim8)
+    if UInt8(x) >= 0x80
+        return true
+    else
+        return false
+    end
+end
+
+function signbit(x::Optim16)
+    if UInt16(x) >= 0x8000
+        return true
+    else
+        return false
+    end
+end
+
+function sign(p::T) where {T <: AbstractOptim}
+    if signbit(p)       # negative and infinity case
+        if isfinite(p)  # negative
+            return minusone(T)
+        else            # infinity
+            return zero(T)
+        end
+    else                # positive and zero case
+        if iszero(p)    # zero
+            return zero(T)
+        else            # positive
+            return one(T)
+        end
+    end
+end
