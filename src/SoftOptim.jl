@@ -21,7 +21,9 @@ include("constants.jl")
 data = randn(10_000_000)
 
 const optim8 = trainOptim(8,data)
+const optim16 = trainOptim(16,data)
 const bounds8 = OptimBounds(optim8)
+const bounds16 = OptimBounds(optim16)
 
 include("conversionsFloat.jl")
 include("lookup_lists.jl")
@@ -34,6 +36,9 @@ const TableDiv8 = createTableDiv(optim8)
 
 const ListSqrt8 = createListSqrt(optim8)
 const ListInv8 = createListInv(optim8)
+
+const ListSqrt16 = createListSqrt(optim16)
+const ListInv16 = createListInv(optim16)
 
 include("arithmetics.jl")
 

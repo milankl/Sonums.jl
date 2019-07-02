@@ -126,3 +126,11 @@ function inv(x::Optim8)
         return ListInv8[UInt8(x)+one(UInt8)]
     end
 end
+
+function inv(x::Optim16)
+    if signbit(x)
+        return -ListInv16[UInt16(-x)+one(UInt16)]
+    else
+        return ListInv16[UInt16(x)+one(UInt16)]
+    end
+end
