@@ -1,9 +1,9 @@
 function Optim8(x::Float64)
     if isfinite(x)
         if signbit(x)
-            return -Optim8(UInt8(findfirstsmaller(-x,bounds8)-2))
+            return -Optim8(UInt8(findFirstSmaller(-x,bounds8)-2))
         else
-            return Optim8(UInt8(findfirstsmaller(x,bounds8)-2))
+            return Optim8(UInt8(findFirstSmaller(x,bounds8)-2))
         end
     else    # Inf,-Inf, and NaN
         return notareal(Optim8)
@@ -13,15 +13,16 @@ end
 function Optim16(x::Float64)
     if isfinite(x)
         if signbit(x)
-            return -Optim16(UInt16(findfirstsmaller(-x,bounds16)-2))
+            return -Optim16(UInt16(findFirstSmaller(-x,bounds16)-2))
         else
-            return Optim16(UInt16(findfirstsmaller(x,bounds16)-2))
+            return Optim16(UInt16(findFirstSmaller(x,bounds16)-2))
         end
     else    # Inf, -Inf, and NaN
         return notareal(Optim16)
     end
 end
 
+#TODO Float64(notareal(Optim8)) is -Inf, problem?
 Float64(x::Optim8) = signbit(x) ? -optim8[UInt8(-x)+one(UInt8)] : optim8[UInt8(x)+one(UInt8)]
 Float64(x::Optim16) = signbit(x) ? -optim16[UInt16(-x)+one(UInt16)] : optim16[UInt16(x)+one(UInt16)]
 

@@ -7,7 +7,7 @@ function findfirsttrue(b::BitArray{1})
     return Inf
 end
 
-# function findfirstsmaller(x::Float64,v::Array{Float64,1})
+# function findFirstSmaller(x::Float64,v::Array{Float64,1})
 #     n = length(v)
 #     for i in 1:n
 #         if x < v[i]
@@ -17,7 +17,7 @@ end
 #     return n
 # end
 
-function findfirstsmaller(x::Float64,v::Array{Float64,1})
+function findFirstSmaller(x::Float64,v::Array{Float64,1})
 
     l = length(v)
     if l == 129         # 8bit case
@@ -30,11 +30,11 @@ function findfirstsmaller(x::Float64,v::Array{Float64,1})
         throw(BoundsError())
     end
 
-    if !isfinite(x)
+    if x > v[end-1]     # floatmax and infinity case
         return l
     end
 
-    # split
+    # binary tree
     for i in 1:n
         if x < v[idx]
             idx -= 2^(n-i)
@@ -43,7 +43,7 @@ function findfirstsmaller(x::Float64,v::Array{Float64,1})
         end
     end
 
-    # split off the i = 7 case
+    # split off the i = n+1 case
     if x >= v[idx]
         idx += 1
     end
