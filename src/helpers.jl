@@ -51,6 +51,13 @@ function findFirstSmaller(x::Float64,v::Array{Float64,1})
     return idx
 end
 
+function ij2k(i::Int,j::Int,n::Int)
+    if i > j    # swap indices for lower triangle (symmetric)
+        return j*(2n - j - 1)÷2 + i + 1
+    else
+        return i*(2n - i - 1)÷2 + j + 1
+    end
+end
 
 # function findfirstlarger(x::Float64,v::Array{Float64,1})
 #     for i in 1:length(v)
