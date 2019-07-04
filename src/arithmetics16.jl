@@ -1,15 +1,15 @@
 function *(x::Optim16,y::Optim16)
     if signbit(x)
         if signbit(y)
-            return TableMul16[UInt16(-x)+one(UInt16),UInt16(-y)+one(UInt16)]
+            return TableMul16[Int(-x)+1,Int(-y)+1]
         else
-            return -TableMul16[UInt16(-x)+one(UInt16),UInt16(y)+one(UInt16)]
+            return -TableMul16[Int(-x)+1,Int(y)+1]
         end
     else
         if signbit(y)
-            return -TableMul16[UInt16(x)+one(UInt16),UInt16(-y)+one(UInt16)]
+            return -TableMul16[Int(x)+1,Int(-y)+1]
         else
-            return TableMul16[UInt16(x)+one(UInt16),UInt16(y)+one(UInt16)]
+            return TableMul16[Int(x)+1,Int(y)+1]
         end
     end
 end
@@ -17,15 +17,35 @@ end
 function +(x::Optim16,y::Optim16)
     if signbit(x)
         if signbit(y)   # -a-b = -(a+b)
-            return -TableAdd16[UInt16(-x)+one(UInt16),UInt16(-y)+one(UInt16)]
+            return -TableAdd16[Int(-x)+1,Int(-y)+1]
         else            # -a+b = b-a
-            return TableSub16[UInt16(y)+one(UInt16),UInt16(-x)+one(UInt16)]
+
+            # anti-symmetric: check for size
+            a = Int(y)+1
+            b = Int(-x)+1
+
+            if a > b
+                return -TableSub16[b,a]
+            else
+                return TableSub16[a,b]
+            end
+
         end
     else
         if signbit(y)   # a-b
-            return TableSub16[UInt16(x)+one(UInt16),UInt16(-y)+one(UInt16)]
+            #return TableSub16[Int(x)+1,Int(-y)+1]
+
+            # anti-symmetric: check for size
+            a = Int(x)+1
+            b = Int(-y)+1
+
+            if a > b
+                return -TableSub16[b,a]
+            else
+                return TableSub16[a,b]
+            end
         else
-            return TableAdd16[UInt16(x)+one(UInt16),UInt16(y)+one(UInt16)]
+            return TableAdd16[Int(x)+1,Int(y)+1]
         end
     end
 end
@@ -33,15 +53,36 @@ end
 function -(x::Optim16,y::Optim16)
     if signbit(x)
         if signbit(y)   # -a--b = b-a
-            return TableSub16[UInt16(-y)+one(UInt16),UInt16(-x)+one(UInt16)]
+            # return TableSub16[Int(-y)+1,Int(-x)+1]
+
+            # anti-symmetric: check for size
+            a = Int(-y)+1
+            b = Int(-x)+1
+
+            if a > b
+                return -TableSub16[b,a]
+            else
+                return TableSub16[a,b]
+            end
+
         else            # -a-b = -(a+b)
-            return -TableAdd16[UInt16(-x)+one(UInt16),UInt16(y)+one(UInt16)]
+            return -TableAdd16[Int(-x)+1,Int(y)+1]
         end
     else
         if signbit(y)   # a--b = a+b
-            return TableAdd16[UInt16(x)+one(UInt16),UInt16(-y)+one(UInt16)]
+            return TableAdd16[Int(x)+1,Int(-y)+1]
         else            # a-b
-            return TableSub16[UInt16(x)+one(UInt16),UInt16(y)+one(UInt16)]
+            # return TableSub16[Int(x)+1,Int(y)+1]
+
+            # anti-symmetric: check for size
+            a = Int(x)+1
+            b = Int(y)+1
+
+            if a > b
+                return -TableSub16[b,a]
+            else
+                return TableSub16[a,b]
+            end
         end
     end
 end
@@ -54,15 +95,15 @@ function sqrt(x::Optim16)
     if signbit(x)
         return notareal(Optim16)
     else
-        return ListSqrt16[UInt16(x)+one(UInt16)]
+        return ListSqrt16[Int(x)+1]
     end
 end
 
 function inv(x::Optim16)
     if signbit(x)
-        return -ListInv16[UInt16(-x)+one(UInt16)]
+        return -ListInv16[Int(-x)+1]
     else
-        return ListInv16[UInt16(x)+one(UInt16)]
+        return ListInv16[Int(x)+1]
     end
 end
 
