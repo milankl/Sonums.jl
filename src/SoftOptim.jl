@@ -9,7 +9,7 @@ import Base: Float64, Float32, Float16, Int32, Int64,
     floatmin, floatmax, signbit, sign, isfinite,
     nextfloat, prevfloat, abs, inv
 
-using Random
+using Random, LinearAlgebra
 
 include("typedef.jl")
 include("helpers.jl")
@@ -33,8 +33,10 @@ include("lookup_tables.jl")
 const TableMul8 = createTableMul(optim8)
 const TableAdd8 = createTableAdd(optim8)
 const TableSub8 = createTableSub(optim8)
-#const TableDiv8 = createTableDiv(optim8)
-# const TableMul16 = createTableMul(optim16)
+
+const TableMul16 = createTableMul(optim16)
+const TableAdd16 = createTableAdd(optim16)
+const TableSub16 = createTableSub(optim16)
 
 const ListSqrt8 = createListSqrt(optim8)
 const ListInv8 = createListInv(optim8)

@@ -1,22 +1,3 @@
-function findfirsttrue(b::BitArray{1})
-    for i in 1:length(b)
-        if b[i]
-            return i
-        end
-    end
-    return Inf
-end
-
-# function findFirstSmaller(x::Float64,v::Array{Float64,1})
-#     n = length(v)
-#     for i in 1:n
-#         if x < v[i]
-#             return i
-#         end
-#     end
-#     return n
-# end
-
 function findFirstSmaller(x::Float64,v::Array{Float64,1})
 
     l = length(v)
@@ -34,7 +15,7 @@ function findFirstSmaller(x::Float64,v::Array{Float64,1})
         return l
     end
 
-    # binary tree
+    # binary tree search
     for i in 1:n
         if x < v[idx]
             idx -= 2^(n-i)
@@ -51,13 +32,13 @@ function findFirstSmaller(x::Float64,v::Array{Float64,1})
     return idx
 end
 
-function ij2k(i::Int,j::Int,n::Int)
-    if i > j    # swap indices for lower triangle (symmetric)
-        return j*(2n - j - 1)÷2 + i + 1
-    else
-        return i*(2n - i - 1)÷2 + j + 1
-    end
-end
+# function ij2k(i::Int,j::Int,n::Int)
+#     if i > j    # swap indices for lower triangle (symmetric)
+#         return j*(2n - j - 1)÷2 + i + 1
+#     else
+#         return i*(2n - i - 1)÷2 + j + 1
+#     end
+# end
 
 # function findfirstlarger(x::Float64,v::Array{Float64,1})
 #     for i in 1:length(v)
@@ -66,4 +47,23 @@ end
 #         end
 #     end
 #     return v[end]
+# end
+
+# function findfirsttrue(b::BitArray{1})
+#     for i in 1:length(b)
+#         if b[i]
+#             return i
+#         end
+#     end
+#     return Inf
+# end
+
+# function findFirstSmaller(x::Float64,v::Array{Float64,1})
+#     n = length(v)
+#     for i in 1:n
+#         if x < v[i]
+#             return i
+#         end
+#     end
+#     return n
 # end
