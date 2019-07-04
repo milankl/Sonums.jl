@@ -1,7 +1,7 @@
 function trainOptim(nbit::Int,x::AbstractVector)
 
     N = length(x)
-    r = 2^(nbit-1)-1    # amount of representable numbers excluding 0 and NaR, assuming =/- symmetry
+    r = 2^(nbit-1)-1    # amount of representable numbers excluding 0 and NaR, assuming +/- symmetry
     n = N ÷ r
 
     # throw away random data for equally sized chunks of data

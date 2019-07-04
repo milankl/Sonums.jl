@@ -1,91 +1,38 @@
 function createTableMul(v::Array{Float64,1})
-
-    n = length(v)
-    if n == 2^7+1   # 8bit case
-        table = Array{Optim8,2}(undef,n,n)
-        Float2Optim = Optim8
-    elseif n == 2^15+1 # 16bit case
-        table = Array{Optim16,2}(undef,n,n)
-        Float2Optim = Optim16
-    else
-        throw(error("Input v is not of correct length to be compatible with 8bit (127) or 16bit (32767)"))
-    end
-
-    for i in 1:n
-        # if i % 1024 == 0
-        #     progress = i/1024 * 1/32
-        #     println("$progress%")
-        # end
-        for j in 1:n
-            table[i,j] = Float2Optim(v[i]*v[j])
-        end
-    end
-
-    return table
+    return createTable(v,*)
 end
 
 function createTableAdd(v::Array{Float64,1})
-
-    n = length(v)
-    if n == 2^7+1   # 8bit case
-        table = Array{Optim8,2}(undef,n,n)
-        Float2Optim = Optim8
-    elseif n == 2^15+1 # 16bit case
-        table = Array{Optim16,2}(undef,n,n)
-        Float2Optim = Optim16
-    else
-        throw(error("Input v is not of correct length to be compatible with 8bit (127) or 16bit (32767)"))
-    end
-
-    for i in 1:n
-        for j in 1:n
-            table[i,j] = Float2Optim(v[i]+v[j])
-        end
-    end
-
-    return table
+    return createTable(v,+)
 end
 
 function createTableSub(v::Array{Float64,1})
-
-    n = length(v)
-    if n == 2^7+1   # 8bit case
-        table = Array{Optim8,2}(undef,n,n)
-        Float2Optim = Optim8
-    elseif n == 2^15+1 # 16bit case
-        table = Array{Optim16,2}(undef,n,n)
-        Float2Optim = Optim16
-    else
-        throw(error("Input v is not of correct length to be compatible with 8bit (127) or 16bit (32767)"))
-    end
-
-    for i in 1:n
-        for j in 1:n
-            table[i,j] = Float2Optim(v[i]-v[j])
-        end
-    end
-
-    return table
+    return createTable(v,-)
 end
 
-function createTableDiv(v::Array{Float64,1})
+function createTable(v::Array{Float64,1},operator)
 
     n = length(v)
     if n == 2^7+1   # 8bit case
         table = Array{Optim8,2}(undef,n,n)
+        #table = Array{Optim8,1}(undef,(n*(n+1))÷2)  # Triangular numbers to determine size
         Float2Optim = Optim8
     elseif n == 2^15+1 # 16bit case
         table = Array{Optim16,2}(undef,n,n)
+        #table = Array{Optim16,1}(undef,(n*(n+1))÷2)  # Triangular numbers to determine size
         Float2Optim = Optim16
     else
-        throw(error("Input v is not of correct length to be compatible with 8bit (127) or 16bit (32767)"))
+        throw(error("Input v has to be of length 129 (8bit) or 32769 (16bit)"))
     end
 
     for i in 1:n
         for j in 1:n
-            table[i,j] = Float2Optim(v[i]/v[j])
+            if j >= i      # only upper triangle elements (symmetric or antisymmetric)
+                #table[ij2k(i-1,j-1,n)] = Float2Optim(operator(v[i],v[j]))
+                table[i,j] = Float2Optim(operator(v[i],v[j]))
+            end
         end
     end
 
-    return table
+    return Symmetric(table)
 end
