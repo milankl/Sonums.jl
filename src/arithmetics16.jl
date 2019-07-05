@@ -1,4 +1,4 @@
-function *(x::Optim16,y::Optim16)
+function *(x::Sonum16,y::Sonum16)
     if signbit(x)
         if signbit(y)
             return TableMul16[Int(-x)+1,Int(-y)+1]
@@ -14,7 +14,7 @@ function *(x::Optim16,y::Optim16)
     end
 end
 
-function +(x::Optim16,y::Optim16)
+function +(x::Sonum16,y::Sonum16)
     if signbit(x)
         if signbit(y)   # -a-b = -(a+b)
             return -TableAdd16[Int(-x)+1,Int(-y)+1]
@@ -50,7 +50,7 @@ function +(x::Optim16,y::Optim16)
     end
 end
 
-function -(x::Optim16,y::Optim16)
+function -(x::Sonum16,y::Sonum16)
     if signbit(x)
         if signbit(y)   # -a--b = b-a
             # return TableSub16[Int(-y)+1,Int(-x)+1]
@@ -87,19 +87,19 @@ function -(x::Optim16,y::Optim16)
     end
 end
 
-function /(x::Optim16,y::Optim16)
+function /(x::Sonum16,y::Sonum16)
     return x*inv(y)
 end
 
-function sqrt(x::Optim16)
+function sqrt(x::Sonum16)
     if signbit(x)
-        return notareal(Optim16)
+        return notareal(Sonum16)
     else
         return ListSqrt16[Int(x)+1]
     end
 end
 
-function inv(x::Optim16)
+function inv(x::Sonum16)
     if signbit(x)
         return -ListInv16[Int(-x)+1]
     else
@@ -109,18 +109,18 @@ end
 
 
 # Table-less functions via Float64 conversion - slow but memory efficient
-# function *(x::Optim16,y::Optim16)
-#     return Optim16(Float64(x)*Float64(y))
+# function *(x::Sonum16,y::Sonum16)
+#     return Sonum16(Float64(x)*Float64(y))
 # end
 #
-# function +(x::Optim16,y::Optim16)
-#     return Optim16(Float64(x)+Float64(y))
+# function +(x::Sonum16,y::Sonum16)
+#     return Sonum16(Float64(x)+Float64(y))
 # end
 #
-# function -(x::Optim16,y::Optim16)
-#     return Optim16(Float64(x)-Float64(y))
+# function -(x::Sonum16,y::Sonum16)
+#     return Sonum16(Float64(x)-Float64(y))
 # end
 #
-# function /(x::Optim16,y::Optim16)
-#     return Optim16(Float64(x)/Float64(y))
+# function /(x::Sonum16,y::Sonum16)
+#     return Sonum16(Float64(x)/Float64(y))
 # end

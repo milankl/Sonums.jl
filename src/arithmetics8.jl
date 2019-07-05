@@ -1,4 +1,4 @@
-function *(x::Optim8,y::Optim8)
+function *(x::Sonum8,y::Sonum8)
     if signbit(x)
         if signbit(y)
             return TableMul8[Int(-x)+1,Int(-y)+1]
@@ -14,7 +14,7 @@ function *(x::Optim8,y::Optim8)
     end
 end
 
-function +(x::Optim8,y::Optim8)
+function +(x::Sonum8,y::Sonum8)
     if signbit(x)
         if signbit(y)   # -a-b = -(a+b)
             return -TableAdd8[Int(-x)+1,Int(-y)+1]
@@ -50,7 +50,7 @@ function +(x::Optim8,y::Optim8)
     end
 end
 
-function -(x::Optim8,y::Optim8)
+function -(x::Sonum8,y::Sonum8)
     if signbit(x)
         if signbit(y)   # -a--b = b-a
             # return TableSub8[Int(-y)+1,Int(-x)+1]
@@ -88,19 +88,19 @@ function -(x::Optim8,y::Optim8)
 end
 
 
-function /(x::Optim8,y::Optim8)
+function /(x::Sonum8,y::Sonum8)
     return x*inv(y)
 end
 
-function sqrt(x::Optim8)
+function sqrt(x::Sonum8)
     if signbit(x)
-        return notareal(Optim8)
+        return notareal(Sonum8)
     else
         return ListSqrt8[Int(x)+1]
     end
 end
 
-function inv(x::Optim8)
+function inv(x::Sonum8)
     if signbit(x)
         return -ListInv8[Int(-x)+1]
     else
