@@ -1,5 +1,5 @@
-bitstring(x::Optim8) = bitstring(UInt8(x))
-bitstring(x::Optim16) = bitstring(UInt16(x))
+bitstring(x::Sonum8) = bitstring(UInt8(x))
+bitstring(x::Sonum16) = bitstring(UInt16(x))
 
 #TODO something like
 #show(io::IO,x::Optim8) = print(io,"Optim8")

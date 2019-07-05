@@ -1,4 +1,4 @@
-abstract type AbstractOptim <: AbstractFloat end
+abstract type AbstractSonum <: AbstractFloat end
 
-primitive type Optim8 <: AbstractOptim 8 end
-primitive type Optim16 <: AbstractOptim 16 end
+primitive type Sonum8 <: AbstractSonum 8 end
+primitive type Sonum16 <: AbstractSonum 16 end
