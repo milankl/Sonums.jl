@@ -23,8 +23,8 @@ function Sonum16(x::Float64)
 end
 
 #TODO Float64(notareal(Sonum8)) is -Inf, problem?
-Float64(x::Sonum8) = signbit(x) ? -optim8[Int(-x)+1] : optim8[Int(x)+1]
-Float64(x::Sonum16) = signbit(x) ? -optim16[Int(-x)+1] : optim16[Int(x)+1]
+Float64(x::Sonum8) = signbit(x) ? -sonum8[Int(-x)+1] : sonum8[Int(x)+1]
+Float64(x::Sonum16) = signbit(x) ? -sonum16[Int(-x)+1] : sonum16[Int(x)+1]
 
 Float32(x::Sonum8) = Float32(Float64(x))
 Float32(x::Sonum16) = Float32(Float64(x))
