@@ -1,2 +1,2 @@
-# SoftOptim.jl
-An emulator for Optims - the optimal number system.
+# SoftSonum.jl
+An emulator for Sonums - the Self-Organizing NUMber system. A number system that learns from data.
