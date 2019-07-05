@@ -1,4 +1,4 @@
-function trainOptim(nbit::Int,x::AbstractVector)
+function trainSonum(nbit::Int,x::AbstractVector)
 
     N = length(x)
     r = 2^(nbit-1)-1    # amount of representable numbers excluding 0 and NaR, assuming +/- symmetry
@@ -20,7 +20,7 @@ function trainOptim(nbit::Int,x::AbstractVector)
     return optim
 end
 
-function OptimBounds(x::Array{Float64,1})
+function SonumBounds(x::Array{Float64,1})
 
     x[1] == 0 || throw(error("The first element of x should be 0."))
     x[end] == Inf || throw(error("The last element of x should be Inf."))
