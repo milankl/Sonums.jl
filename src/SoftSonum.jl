@@ -12,6 +12,7 @@ using Random, LinearAlgebra
 
 include("typedef.jl")
 include("helpers.jl")
+include("feedback.jl")
 include("conversionsInt.jl")
 include("sign.jl")
 include("print.jl")
