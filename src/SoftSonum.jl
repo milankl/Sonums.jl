@@ -1,7 +1,6 @@
 module SoftSonum
 
-export AbstractSonum, Sonum8, Sonum16,
-    notareal, trainSonum
+export AbstractSonum, Sonum8, Sonum16, trainSonum
 
 import Base: Float64, Float32, Float16, Int32, Int64,
     (+), (-), (*), (/), (<), (<=), (==), sqrt,

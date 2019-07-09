@@ -1,8 +1,8 @@
-zero(::Sonum8) = Sonum8(0x00)
-zero(::Sonum16) = Sonum16(0x00)
+zero(::Type{Sonum8}) = Sonum8(0x00)
+zero(::Type{Sonum16}) = Sonum16(0x0000)
 
-one(::Sonum8) = Sonum8(1.0)
-one(::Sonum16) = Sonum16(1.0)
+one(::Type{Sonum8}) = Sonum8(1.0)
+one(::Type{Sonum16}) = Sonum16(1.0)
 
 minusone(::Type{Sonum8}) = Sonum8(-1.0)
 minusone(::Type{Sonum16}) = Sonum16(-1.0)
