@@ -1,38 +1,90 @@
-function createTableMul(v::Array{Float64,1})
-    return createTable(v,*)
+function fillSonumTables(nbit::Int)
+
+    # start with the lists - the fast bit
+    fillListInv(nbit)
+    fillListSqrt(nbit)
+    fillTable(nbit,(+))
+    fillTable(nbit,(-))
+    fillTable(nbit,(*))
 end
 
-function createTableAdd(v::Array{Float64,1})
-    return createTable(v,+)
-end
+function fillTable(nbit::Int,operator)
 
-function createTableSub(v::Array{Float64,1})
-    return createTable(v,-)
-end
-
-function createTable(v::Array{Float64,1},operator)
-
-    n = length(v)
-    if n == 2^7+1   # 8bit case
-        table = Array{Sonum8,2}(undef,n,n)
-        #table = Array{Sonum8,1}(undef,(n*(n+1))÷2)  # Triangular numbers to determine size
+    if nbit == 8
+        sonum = sonum8
         Float2Sonum = Sonum8
-    elseif n == 2^15+1 # 16bit case
-        table = Array{Sonum16,2}(undef,n,n)
-        #table = Array{Sonum16,1}(undef,(n*(n+1))÷2)  # Triangular numbers to determine size
+    elseif nbit == 16
+        sonum = sonum16
         Float2Sonum = Sonum16
     else
-        throw(error("Input v has to be of length 129 (8bit) or 32769 (16bit)"))
+        throw(error("Only 8/16bit supported."))
     end
 
+    # fill the underlying matrices not the symmetric views
+    if operator == (+)
+        if nbit == 8
+            table = TableAdd8
+        elseif nbit == 16
+            table = TableAdd16
+        end
+    elseif operator == (-)
+        if nbit == 8
+            table = TableSub8
+        elseif nbit == 16
+            table = TableSub16
+        end
+    elseif operator == (*)
+        if nbit == 8
+            table = TableMul8
+        elseif nbit == 16
+            table = TableMul16
+        end
+    else
+        throw(error("No $operator table defined."))
+    end
+
+    n = length(sonum)
     for i in 1:n
         for j in 1:n
             if j >= i      # only upper triangle elements (symmetric or antisymmetric)
-                #table[ij2k(i-1,j-1,n)] = Float2Sonum(operator(v[i],v[j]))
-                table[i,j] = Float2Sonum(operator(v[i],v[j]))
+                table[i,j] = Float2Sonum(operator(sonum[i],sonum[j]))
             end
         end
     end
+end
 
-    return Symmetric(table)
+function fillListSqrt(nbit::Int)
+    if nbit == 8
+        sonum = sonum8
+        ListSqrt = ListSqrt8
+        Float2Sonum = Sonum8
+    elseif nbit == 16
+        sonum = sonum16
+        ListSqrt = ListSqrt16
+        Float2Sonum = Sonum16
+    else
+        throw(error("Only 8/16bit supported."))
+    end
+
+    for i in 1:length(sonum)
+        ListSqrt[i] = Float2Sonum(sqrt(sonum[i]))
+    end
+end
+
+function fillListInv(nbit::Int)
+    if nbit == 8
+        sonum = sonum8
+        ListInv = ListInv8
+        Float2Sonum = Sonum8
+    elseif nbit == 16
+        sonum = sonum16
+        ListInv = ListInv16
+        Float2Sonum = Sonum16
+    else
+        throw(error("Only 8/16bit supported."))
+    end
+
+    for i in 1:length(sonum)
+        ListInv[i] = Float2Sonum(1/sonum[i])
+    end
 end

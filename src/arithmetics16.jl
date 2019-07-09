@@ -1,15 +1,15 @@
 function *(x::Sonum16,y::Sonum16)
     if signbit(x)
         if signbit(y)
-            return TableMul16[Int(-x)+1,Int(-y)+1]
+            return TableMul16S[Int(-x)+1,Int(-y)+1]
         else
-            return -TableMul16[Int(-x)+1,Int(y)+1]
+            return -TableMul16S[Int(-x)+1,Int(y)+1]
         end
     else
         if signbit(y)
-            return -TableMul16[Int(x)+1,Int(-y)+1]
+            return -TableMul16S[Int(x)+1,Int(-y)+1]
         else
-            return TableMul16[Int(x)+1,Int(y)+1]
+            return TableMul16S[Int(x)+1,Int(y)+1]
         end
     end
 end
@@ -17,7 +17,7 @@ end
 function +(x::Sonum16,y::Sonum16)
     if signbit(x)
         if signbit(y)   # -a-b = -(a+b)
-            return -TableAdd16[Int(-x)+1,Int(-y)+1]
+            return -TableAdd16S[Int(-x)+1,Int(-y)+1]
         else            # -a+b = b-a
 
             # anti-symmetric: check for size
@@ -25,9 +25,9 @@ function +(x::Sonum16,y::Sonum16)
             b = Int(-x)+1
 
             if a > b
-                return -TableSub16[b,a]
+                return -TableSub16S[b,a]
             else
-                return TableSub16[a,b]
+                return TableSub16S[a,b]
             end
 
         end
@@ -40,12 +40,12 @@ function +(x::Sonum16,y::Sonum16)
             b = Int(-y)+1
 
             if a > b
-                return -TableSub16[b,a]
+                return -TableSub16S[b,a]
             else
-                return TableSub16[a,b]
+                return TableSub16S[a,b]
             end
         else
-            return TableAdd16[Int(x)+1,Int(y)+1]
+            return TableAdd16S[Int(x)+1,Int(y)+1]
         end
     end
 end
@@ -60,17 +60,17 @@ function -(x::Sonum16,y::Sonum16)
             b = Int(-x)+1
 
             if a > b
-                return -TableSub16[b,a]
+                return -TableSub16S[b,a]
             else
-                return TableSub16[a,b]
+                return TableSub16S[a,b]
             end
 
         else            # -a-b = -(a+b)
-            return -TableAdd16[Int(-x)+1,Int(y)+1]
+            return -TableAdd16S[Int(-x)+1,Int(y)+1]
         end
     else
         if signbit(y)   # a--b = a+b
-            return TableAdd16[Int(x)+1,Int(-y)+1]
+            return TableAdd16S[Int(x)+1,Int(-y)+1]
         else            # a-b
             # return TableSub16[Int(x)+1,Int(y)+1]
 
@@ -79,9 +79,9 @@ function -(x::Sonum16,y::Sonum16)
             b = Int(y)+1
 
             if a > b
-                return -TableSub16[b,a]
+                return -TableSub16S[b,a]
             else
-                return TableSub16[a,b]
+                return TableSub16S[a,b]
             end
         end
     end

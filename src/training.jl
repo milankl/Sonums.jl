@@ -1,40 +1,53 @@
-function trainSonum(nbit::Int,x::AbstractVector)
+function trainSonum(nbit::Int,data::Union{AbstractArray{Float32},AbstractArray{Float64}})
 
-    N = length(x)
+    if nbit == 8
+        sonum = sonum8
+    elseif nbit == 16
+        sonum = sonum16
+    else
+        throw(error("Only 8/16bit supported."))
+    end
+
+    N = length(data)
     r = 2^(nbit-1)-1    # amount of representable numbers excluding 0 and NaR, assuming +/- symmetry
     n = N ÷ r
 
     # throw away random data for equally sized chunks of data
-    x = shuffle(abs.(x))[1:n*r]
-    sort!(x)
+    data = shuffle(abs.(data[:]))[1:n*r]
+    sort!(data)
 
-    optim = fill(0.0,r+2)   # always use Float64 here, first element is 0
-    optim[2] = (2*x[1] + x[n] + x[n+1])/4
-    optim[end-1] = (2*x[r*n] + x[(r-1)*n] + x[(r-1)*n-1])/4
-    optim[end] = Inf
+    # sonum entries are always Floa64
+    sonum[1] = 0.0
+    sonum[2] = (2*data[1] + data[n] + data[n+1])/4
+    sonum[end-1] = (2*data[r*n] + data[(r-1)*n] + data[(r-1)*n-1])/4
+    sonum[end] = Inf
 
     for i in 2:r-1
-        optim[i+1] = (x[(i-1)*n] + x[(i-1)*n + 1] + x[i*n] + x[i*n + 1])/4
+        sonum[i+1] = (data[(i-1)*n] + data[(i-1)*n + 1] + data[i*n] + data[i*n + 1])/4
     end
 
-    return optim
+    calcBounds(nbit,sonum)
 end
 
-function SonumBounds(x::Array{Float64,1})
+function calcBounds(nbit::Int,numlist::Array{Float64,1})
 
-    x[1] == 0 || throw(error("The first element of x should be 0."))
-    x[end] == Inf || throw(error("The last element of x should be Inf."))
+    numlist[1] == 0 || throw(error("The first element of x should be 0."))
+    numlist[end] == Inf || throw(error("The last element of x should be Inf."))
+    numlist == sort(numlist) || throw(error("Elements of x are expected to be in an ascending order."))
 
-    x == sort(x) || throw(error("Elements of x are expected to be in an ascending order."))
-
-    bounds = zero(x)                # first element is zero
-    #bounds[2] = floatmin(Float64)   # no underflow rounding mode
-    bounds[end] = floatmax(Float64)   # no overflow rounding mode
-
-    # use the arithmetic mean (#TODO maybe geometric mean?)
-    for i in 2:length(bounds)-1
-        bounds[i] = 0.5*(x[i-1] + x[i])
+    if nbit == 8
+        bounds = bounds8
+    elseif nbit == 16
+        bounds = bounds16
+    else
+        throw(error("Only 8/16bit supported."))
     end
 
-    return bounds
+    bounds[1] = 0.0
+    bounds[end] = floatmax(Float64)     # no overflow rounding mode
+
+    # use the arithmetic mean
+    for i in 2:length(bounds)-1
+        bounds[i] = 0.5*(numlist[i-1] + numlist[i])
+    end
 end

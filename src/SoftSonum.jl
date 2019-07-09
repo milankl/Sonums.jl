@@ -1,50 +1,55 @@
 module SoftSonum
 
-export AbstractSonum, Sonum8, Sonum16,
-    notareal, trainSonum
+export AbstractSonum, Sonum8, Sonum16, trainSonum,
+    fillSonumTables, returnSonumList, returnSonumBounds
 
-import Base: Float64, Float32, Float16, Int32, Int64,
-    (+), (-), (*), (/), (<), (<=), (==), sqrt,
-    bitstring, round, one, zero, promote_rule, eps,
-    floatmin, floatmax, signbit, sign, isfinite,
-    nextfloat, prevfloat, abs, inv
+import Base: Float64, Float32, Float16, Int32, Int64, Int,
+    (+), (-), (*), (/), sqrt, bitstring, round,
+    one, zero, promote_rule, floatmin, floatmax,
+    signbit, sign, isfinite, nextfloat, prevfloat, abs, inv
 
 using Random, LinearAlgebra
 
 include("typedef.jl")
 include("helpers.jl")
-include("training.jl")
 include("conversionsInt.jl")
 include("sign.jl")
 include("print.jl")
 include("constants.jl")
+include("preallocate.jl")
 
-data = randn(10_000_000)
+# set-up zeroed number lists and bounds as constants
+const sonum8 = createSonumList(Float64,8)
+const sonum16 = createSonumList(Float64,16)
+const bounds8 = createSonumList(Float64,8)
+const bounds16 = createSonumList(Float64,16)
 
-const sonum8 = trainSonum(8,data)
-const sonum16 = trainSonum(16,data)
-const bounds8 = SonumBounds(sonum8)
-const bounds16 = SonumBounds(sonum16)
+# set-up empty (undef) look up tables and their symmetric views
+const TableMul8S, TableMul8 = createSonumTable(Sonum8,8)
+const TableAdd8S, TableAdd8 = createSonumTable(Sonum8,8)
+const TableSub8S, TableSub8 = createSonumTable(Sonum8,8)
 
+const TableMul16S, TableMul16 = createSonumTable(Sonum16,16)
+const TableAdd16S, TableAdd16 = createSonumTable(Sonum16,16)
+const TableSub16S, TableSub16 = createSonumTable(Sonum16,16)
+
+# set-up zeroed look up lists
+const ListSqrt8 = createSonumList(Sonum8,8)
+const ListInv8 = createSonumList(Sonum8,8)
+
+const ListSqrt16 = createSonumList(Sonum16,16)
+const ListInv16 = createSonumList(Sonum16,16)
+
+# include functions that rely on sonum8, sonum16, bounds8, bounds16
+include("returnSonumList.jl")
 include("conversionsFloat.jl")
-include("lookup_lists.jl")
-include("lookup_tables.jl")
 
-const TableMul8 = createTableMul(sonum8)
-const TableAdd8 = createTableAdd(sonum8)
-const TableSub8 = createTableSub(sonum8)
-
-const TableMul16 = createTableMul(sonum16)
-const TableAdd16 = createTableAdd(sonum16)
-const TableSub16 = createTableSub(sonum16)
-
-const ListSqrt8 = createListSqrt(sonum8)
-const ListInv8 = createListInv(sonum8)
-
-const ListSqrt16 = createListSqrt(sonum16)
-const ListInv16 = createListInv(sonum16)
-
+# define arithmetics based on lookup tables and lists
 include("arithmetics8.jl")
 include("arithmetics16.jl")
+
+# functions for training and filling the lookup tables/lists
+include("training.jl")
+include("lookup_tables.jl")
 
 end

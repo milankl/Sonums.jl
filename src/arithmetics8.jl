@@ -1,15 +1,15 @@
 function *(x::Sonum8,y::Sonum8)
     if signbit(x)
         if signbit(y)
-            return TableMul8[Int(-x)+1,Int(-y)+1]
+            return TableMul8S[Int(-x)+1,Int(-y)+1]
         else
-            return -TableMul8[Int(-x)+1,Int(y)+1]
+            return -TableMul8S[Int(-x)+1,Int(y)+1]
         end
     else
         if signbit(y)
-            return -TableMul8[Int(x)+1,Int(-y)+1]
+            return -TableMul8S[Int(x)+1,Int(-y)+1]
         else
-            return TableMul8[Int(x)+1,Int(y)+1]
+            return TableMul8S[Int(x)+1,Int(y)+1]
         end
     end
 end
@@ -17,7 +17,7 @@ end
 function +(x::Sonum8,y::Sonum8)
     if signbit(x)
         if signbit(y)   # -a-b = -(a+b)
-            return -TableAdd8[Int(-x)+1,Int(-y)+1]
+            return -TableAdd8S[Int(-x)+1,Int(-y)+1]
         else            # -a+b = b-a
 
             # anti-symmetric: check for size
@@ -25,9 +25,9 @@ function +(x::Sonum8,y::Sonum8)
             b = Int(-x)+1
 
             if a > b
-                return -TableSub8[b,a]
+                return -TableSub8S[b,a]
             else
-                return TableSub8[a,b]
+                return TableSub8S[a,b]
             end
 
         end
@@ -40,12 +40,12 @@ function +(x::Sonum8,y::Sonum8)
             b = Int(-y)+1
 
             if a > b
-                return -TableSub8[b,a]
+                return -TableSub8S[b,a]
             else
-                return TableSub8[a,b]
+                return TableSub8S[a,b]
             end
         else
-            return TableAdd8[Int(x)+1,Int(y)+1]
+            return TableAdd8S[Int(x)+1,Int(y)+1]
         end
     end
 end
@@ -60,17 +60,17 @@ function -(x::Sonum8,y::Sonum8)
             b = Int(-x)+1
 
             if a > b
-                return -TableSub8[b,a]
+                return -TableSub8S[b,a]
             else
-                return TableSub8[a,b]
+                return TableSub8S[a,b]
             end
 
         else            # -a-b = -(a+b)
-            return -TableAdd8[Int(-x)+1,Int(y)+1]
+            return -TableAdd8S[Int(-x)+1,Int(y)+1]
         end
     else
         if signbit(y)   # a--b = a+b
-            return TableAdd8[Int(x)+1,Int(-y)+1]
+            return TableAdd8S[Int(x)+1,Int(-y)+1]
         else            # a-b
             # return TableSub8[Int(x)+1,Int(y)+1]
 
@@ -79,9 +79,9 @@ function -(x::Sonum8,y::Sonum8)
             b = Int(y)+1
 
             if a > b
-                return -TableSub8[b,a]
+                return -TableSub8S[b,a]
             else
-                return TableSub8[a,b]
+                return TableSub8S[a,b]
             end
         end
     end
