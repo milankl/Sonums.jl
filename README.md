@@ -5,13 +5,13 @@ An emulator for Sonums - the Self-Organizing NUMber system. A number system that
 Load the emulator with `using SoftSonum`, then train the 8 or 16bit Sonums with your data
 ```julia
 data = randn(10_000_000)
-trainSonum(8,data)    # for Sonum8
-trainSonum(16,data)   # for Sonum16
+trainSonum8(data)
+trainSonum16(data)
 ```
 Once either Sonum8 or Sonum16 is set up, you have to fill the lookup tables for all arithmetic operations
 ```julia
-fillSonumTables(8)    #  8bit: this is quick
-fillSonumTables(16)   # 16bit: this may take a few minutes
+fillSonumTables8()    #  8bit: this is quick
+fillSonumTables16()   # 16bit: this may take a few minutes
 ```
 And now we can do things like
 ```julia
