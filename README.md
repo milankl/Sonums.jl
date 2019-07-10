@@ -24,6 +24,32 @@ julia> Float64(a-b)
 julia> Float64(sqrt(a))
 1.0954481925887807
 ```
+# Benchmarking
+
+Unfortunately the table lookup matrices require 3GB of RAM for 16bit (<1Mb for 8bit). However, arithmetic operations are reasonably fast
+
+```julia
+julia> using BenchmarkTools
+
+julia> a,b = Sonum16(1.5),Sonum16(0.5)
+(Sonum16(0x6ee8), Sonum16(0x3111))
+
+julia> @btime +($a,$b);
+  3.599 ns (0 allocations: 0 bytes)
+
+julia> @btime -($a,$b);
+  3.361 ns (0 allocations: 0 bytes)
+
+julia> @btime *($a,$b);
+  3.121 ns (0 allocations: 0 bytes)
+
+julia> @btime /($a,$b);
+  4.320 ns (0 allocations: 0 bytes)
+
+julia> @btime sqrt($a);
+  2.401 ns (0 allocations: 0 bytes)
+```
+
 
 # Installation
 In the package manager do
