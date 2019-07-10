@@ -5,8 +5,8 @@ An emulator for Sonums - the Self-Organizing NUMber system. A number system that
 Load the emulator with `using SoftSonum`, then train the 8 or 16bit Sonums with your data
 ```julia
 data = randn(10_000_000)
-trainSonum(8,data)
-trainSonum(16,data)
+trainSonum(8,data)    # for Sonum8
+trainSonum(16,data)   # for Sonum16
 ```
 Once either Sonum8 or Sonum16 is set up, you have to fill the lookup tables for all arithmetic operations
 ```julia
