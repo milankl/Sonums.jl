@@ -1,5 +1,7 @@
 module SoftSonum
 
+__precompile__(false)
+
 export AbstractSonum, Sonum8, Sonum16, trainSonum,
     fillSonumTables, returnSonumList, returnSonumBounds
 
