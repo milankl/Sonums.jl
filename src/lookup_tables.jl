@@ -1,3 +1,11 @@
+function fillSonum8Tables()
+    fillSonumTables(8)
+end
+
+function fillSonum16Tables()
+    fillSonumTables(16)
+end
+
 function fillSonumTables(nbit::Int)
 
     # start with the lists - the fast bit
