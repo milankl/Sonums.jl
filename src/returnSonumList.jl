@@ -1,3 +1,12 @@
+function returnSonum8List()
+    returnSonumList(8)
+end
+
+function returnSonum16List()
+    returnSonumList(16)
+end
+
+
 function returnSonumList(nbit::Int)
     if nbit == 8
         return sonum8
