@@ -52,7 +52,7 @@ function setSonum(nbit::Int,nums::Union{AbstractArray{Float32,1},AbstractArray{F
 
     if nbit == 8 && length(nums) == 2^7-1
         sonum = sonum8
-    elseif nbit == 16 && lengt(nums) == 2^15-1
+    elseif nbit == 16 && length(nums) == 2^15-1
         sonum = sonum16
     else
         throw(error("Only 8/16bit supported."))
