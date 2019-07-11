@@ -52,6 +52,8 @@ function fillTable(nbit::Int,operator)
     end
 
     n = length(sonum)
+    if nbit == 16 print("Sonum16: Table lookup ($operator) ...") end
+    t0 = time()
     for i in 1:n
         for j in 1:n
             if j >= i      # only upper triangle elements (symmetric or antisymmetric)
@@ -59,6 +61,9 @@ function fillTable(nbit::Int,operator)
             end
         end
     end
+    t1 = time() - t0
+    s = @sprintf "in %.1fs." t1
+    if nbit == 16 print("\r\u1b[K"); println("Sonum16: Table lookup ($operator) in $s") end
 end
 
 function fillListSqrt(nbit::Int)
