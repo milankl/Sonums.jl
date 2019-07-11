@@ -48,7 +48,7 @@ function fillTable(nbit::Int,operator)
             table = TableMul16
         end
     else
-        throw(error("No $operator table defined."))
+        throw(error("No ()$operator) Table defined."))
     end
 
     n = length(sonum)
@@ -63,7 +63,7 @@ function fillTable(nbit::Int,operator)
     end
     t1 = time() - t0
     s = @sprintf "in %.1fs." t1
-    if nbit == 16 print("\r\u1b[K"); println("Sonum16: Table lookup ($operator) in $s") end
+    if nbit == 16 print("\r\u1b[K"); println("Sonum16: Table lookup ($operator) $s") end
 end
 
 function fillListSqrt(nbit::Int)
