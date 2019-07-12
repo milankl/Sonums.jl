@@ -87,6 +87,12 @@ function calcBounds(nbit::Int,numlist::Array{Float64,1};overflow::Bool=false,und
         bounds[i] = 0.5*(numlist[i-1] + numlist[i])
     end
 
+    # tie to even / round half to even by shifting every second bound a tiny bit
+    for i in 2:2:length(bounds)-1
+        bounds[i] = nextfloat(bounds[i])
+    end
+
+
     # UNDERFLOW ROUNDING MODE
     if ~underflow
         bounds[2] = floatmin(Float64)
