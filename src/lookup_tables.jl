@@ -52,7 +52,7 @@ function fillTable(nbit::Int,operator)
         if nbit == 8
             table = TableDiv8
         elseif nbit == 16
-            table = TableDiv8
+            table = TableDiv16
         end
     else
         throw(error("No ($operator) Table defined."))
