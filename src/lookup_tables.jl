@@ -14,6 +14,7 @@ function fillSonumTables(nbit::Int)
     fillTable(nbit,(+))
     fillTable(nbit,(-))
     fillTable(nbit,(*))
+    fillTable(nbit,(/))
 end
 
 function fillTable(nbit::Int,operator)
@@ -47,17 +48,31 @@ function fillTable(nbit::Int,operator)
         elseif nbit == 16
             table = TableMul16
         end
+    elseif operator == (/)
+        if nbit == 8
+            table = TableDiv8
+        elseif nbit == 16
+            table = TableDiv8
+        end
     else
-        throw(error("No ()$operator) Table defined."))
+        throw(error("No ($operator) Table defined."))
     end
 
     n = length(sonum)
     if nbit == 16 print("Sonum16: Table lookup ($operator) ...") end
     t0 = time()
-    for i in 1:n
-        for j in 1:n
-            if j >= i      # only upper triangle elements (symmetric or antisymmetric)
+    if operator == (/) # not symmetric, nor anti-symmetric
+        for i in 1:n
+            for j in 1:n
                 table[i,j] = Float2Sonum(operator(sonum[i],sonum[j]))
+            end
+        end
+    else
+        for i in 1:n
+            for j in 1:n
+                if j >= i      # only upper triangle elements (symmetric or antisymmetric)
+                    table[i,j] = Float2Sonum(operator(sonum[i],sonum[j]))
+                end
             end
         end
     end

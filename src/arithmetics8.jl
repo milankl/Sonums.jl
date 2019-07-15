@@ -87,10 +87,26 @@ function -(x::Sonum8,y::Sonum8)
     end
 end
 
-
 function /(x::Sonum8,y::Sonum8)
-    return x*inv(y)
+    if signbit(x)
+        if signbit(y)
+            return TableDiv8[Int(-x)+1,Int(-y)+1]
+        else
+            return -TableDiv8[Int(-x)+1,Int(y)+1]
+        end
+    else
+        if signbit(y)
+            return -TableDiv8[Int(x)+1,Int(-y)+1]
+        else
+            return TableDiv8[Int(x)+1,Int(y)+1]
+        end
+    end
 end
+
+# This increases the error as two roundings are applied
+# function /(x::Sonum8,y::Sonum8)
+#     return x*inv(y)
+# end
 
 function sqrt(x::Sonum8)
     if signbit(x)

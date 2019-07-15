@@ -31,13 +31,15 @@ const bounds8 = createSonumList(Float64,8)
 const bounds16 = createSonumList(Float64,16)
 
 # set-up empty (undef) look up tables and their symmetric views
-const TableMul8S, TableMul8 = createSonumTable(Sonum8,8)
 const TableAdd8S, TableAdd8 = createSonumTable(Sonum8,8)
 const TableSub8S, TableSub8 = createSonumTable(Sonum8,8)
+const TableMul8S, TableMul8 = createSonumTable(Sonum8,8)
+const TableDiv8S, TableDiv8 = createSonumTable(Sonum8,8)
 
-const TableMul16S, TableMul16 = createSonumTable(Sonum16,16)
 const TableAdd16S, TableAdd16 = createSonumTable(Sonum16,16)
 const TableSub16S, TableSub16 = createSonumTable(Sonum16,16)
+const TableMul16S, TableMul16 = createSonumTable(Sonum16,16)
+const TableDiv16S, TableDiv16 = createSonumTable(Sonum16,16)
 
 # set-up zeroed look up lists
 const ListSqrt8 = createSonumList(Sonum8,8)
