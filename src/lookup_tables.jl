@@ -67,6 +67,10 @@ function fillTable(nbit::Int,operator)
                 table[i,j] = Float2Sonum(operator(sonum[i],sonum[j]))
             end
         end
+
+        # division by NaR should always yield NaR (and not 0 when interpreted as Inf)
+        table[:,2^(nbit-1)+1] .= notareal(Float2Sonum)
+
     else
         for i in 1:n
             for j in 1:n
