@@ -1,5 +1,5 @@
 # SoftSonum.jl
-An emulator for Sonums - the Self-Organizing NUMber system. A number system that learns from data.
+An emulator for Sonums - the Self-Organizing NUMber system. A number system that learns from data. Sonum8 is the 8bit version, Sonum16 for 16bit computations.
 
 # Usage
 Load the emulator with `using SoftSonum`, then train the 8 or 16bit Sonums with your data
@@ -7,6 +7,14 @@ Load the emulator with `using SoftSonum`, then train the 8 or 16bit Sonums with 
 data = randn(10_000_000)
 trainSonum8(data)
 trainSonum16(data)
+```
+Alternatively, you can also use a 127-element vector (8bit) or 32767-element vector (16bit) to set the representable Sonums directly. To imitate Posit8 for example you may do
+
+```julia
+using SoftPosit
+posit8 = Float64.(Posit8.(UInt8.(collect(1:127))))  # creates a list of Posit8 number in (0,Inf) 
+setSonum8(posit8)
+setUnderflow8(false)  # Posits don't underflow but Sonums do by default
 ```
 Once either Sonum8 or Sonum16 is set up, you have to fill the lookup tables for all arithmetic operations
 ```julia
@@ -26,7 +34,7 @@ julia> Float64(sqrt(a))
 ```
 # Benchmarking
 
-Unfortunately the table lookup matrices require 3GB of RAM for 16bit (<1Mb for 8bit). However, arithmetic operations are reasonably fast
+Unfortunately the table lookup matrices require 4GB of RAM for 16bit (<1Mb for 8bit). However, arithmetic operations are reasonably fast
 
 ```julia
 julia> using BenchmarkTools
@@ -49,7 +57,8 @@ julia> @btime /($a,$b);
 julia> @btime sqrt($a);
   2.401 ns (0 allocations: 0 bytes)
 ```
-
+# Testing
+Sonums are tested against the SoftPosit library: Once set up with Posits, Sonums yield bitwise-reproducible results for +,-,*,/. 
 
 # Installation
 In the package manager do
