@@ -4,7 +4,8 @@ module SoftSonum
 __precompile__(false)
 
 export AbstractSonum, Sonum8, Sonum16, trainSonum8, trainSonum16,
-    fillSonum8Tables, fillSonum16Tables, returnSonum8List, returnSonum16List,
+    fillSonum8Tables, fillSonum16Tables, fillTables,
+    returnSonum8List, returnSonum16List,
     setSonum8, setSonum16, setOverflow8, setOverflow16, setUnderflow8, setUnderflow16
 
 import Base: Float64, Float32, Float16, Int32, Int64, Int,
