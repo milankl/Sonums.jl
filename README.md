@@ -34,29 +34,34 @@ julia> Float64(sqrt(a))
 ```
 # Benchmarking
 
-Unfortunately the table lookup matrices require 4GB of RAM for 16bit (<1Mb for 8bit). However, arithmetic operations are reasonably fast
+Unfortunately the table lookup matrices require 5GB (1GB per table, 2GB for division) of RAM for 16bit (<1Mb for 8bit). However, arithmetic operations are reasonably fast. In order to avoid caching in the benchmarking, we perform operations over arrays
 
 ```julia
 julia> using BenchmarkTools
 
-julia> a,b = Sonum16(1.5),Sonum16(0.5)
-(Sonum16(0x6ee8), Sonum16(0x3111))
+julia> N = 100000;
+
+julia> a = Sonum16.(randn(N));
+
+julia> b = Sonum16.(randn(N));
 
 julia> @btime +($a,$b);
-  3.599 ns (0 allocations: 0 bytes)
+  2.358 ms (2 allocations: 195.39 KiB)
 
 julia> @btime -($a,$b);
-  3.361 ns (0 allocations: 0 bytes)
+  2.348 ms (2 allocations: 195.39 KiB)
 
-julia> @btime *($a,$b);
-  3.121 ns (0 allocations: 0 bytes)
+julia> @btime .*($a,$b);
+  1.829 ms (2 allocations: 195.39 KiB)
 
-julia> @btime /($a,$b);
-  4.320 ns (0 allocations: 0 bytes)
+julia> @btime ./($a,$b);
+  1.753 ms (2 allocations: 195.39 KiB)
 
-julia> @btime sqrt($a);
-  2.401 ns (0 allocations: 0 bytes)
+julia> @btime sqrt.($a);
+  433.788 μs (2 allocations: 195.39 KiB)
 ```
+So that `+,-` require ca. 2.35ms/N = __23.5ns__, `*,/` ca 1.8ms/N = __18ns__ and `sqrt` ca. __4.3ns__
+
 # Testing
 Sonums are tested against the SoftPosit library: Once set up with Posits, Sonums yield bitwise-reproducible results for +,-,*,/. 
 
