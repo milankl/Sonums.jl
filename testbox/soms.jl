@@ -12,9 +12,9 @@ train = hcat(x1,y1)
 
 # intialise
 
-nx = 50
-ny = 2
-global som = initSOM(train,nx,ny,topol=:hexagonal)
+nx = 10
+ny = 10
+global som = initSOM(train,nx,ny,topol=:rectangular)
 
 inicodes = deepcopy(som.grid)
 inicodes[:,1] /= maximum(inicodes[:,1])
@@ -26,7 +26,7 @@ inicodes[:,2] *= (maximum(train[:,2]) - minimum(train[:,2]))
 inicodes[:,1] .+= minimum(train[:,1])
 inicodes[:,2] .+= minimum(train[:,2])
 
-som.codes[:,:] = inicodes
+#som.codes[:,:] = inicodes
 
 ##
 
@@ -55,8 +55,8 @@ for i in 1:nx
     global ly[i], = ax.plot(som.codes[i:nx:end,1],som.codes[i:nx:end,2],"k",lw=1)
 end
 
-#lnodes, = ax.plot(som.codes[:,1],som.codes[:,2],"w.",ms=1,markeredgecolor="k")
-ax.scatter(som.codes[:,1],som.codes[:,2],40,som.population,edgecolor="k",cmap="rainbow",zorder=10)
+lnodes, = ax.plot(som.codes[:,1],som.codes[:,2],"w.",ms=1,markeredgecolor="k")
+#ax.scatter(som.codes[:,1],som.codes[:,2],40,som.population,edgecolor="k",cmap="rainbow",zorder=10)
 tight_layout()
 savefig("/local/home/kloewer/somdata/frames/frame0000.png")
 
@@ -76,8 +76,9 @@ for ii = 1:100
         ly[i].set_data(som.codes[i:nx:end,1],som.codes[i:nx:end,2])
     end
 
-    lnodes.set_data(som.codes[:,1],som.codes[:,2])
-
+    for i in 1:ny
+        ly[i].set_data(som.codes[:,1],som.codes[:,2])
+    end
     savefig("/local/home/kloewer/somdata/frames/frame$(lpad(ii,4,"0")).png")
     println(ii)
 

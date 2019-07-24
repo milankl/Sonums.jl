@@ -59,6 +59,7 @@ include("arithmetics16.jl")
 
 # functions for training and filling the lookup tables/lists
 include("training.jl")
+include("bounds.jl")
 include("lookup_tables.jl")
 
 end
