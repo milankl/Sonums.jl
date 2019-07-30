@@ -6,7 +6,8 @@ __precompile__(false)
 export AbstractSonum, Sonum8, Sonum16, trainSonum8, trainSonum16,
     fillSonum8Tables, fillSonum16Tables, fillTable,
     returnSonum8List, returnSonum16List,
-    setSonum8, setSonum16, setOverflow8, setOverflow16, setUnderflow8, setUnderflow16
+    setSonum8, setSonum16, setOverflow8, setOverflow16, setUnderflow8, setUnderflow16,
+    maxentropy
 
 import Base: Float64, Float32, Float16, Int32, Int64, Int,
     UInt8, UInt16,
@@ -58,6 +59,7 @@ include("arithmetics8.jl")
 include("arithmetics16.jl")
 
 # functions for training and filling the lookup tables/lists
+include("clustering.jl")
 include("training.jl")
 include("bounds.jl")
 include("lookup_tables.jl")
