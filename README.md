@@ -1,5 +1,5 @@
 # SoftSonum.jl
-An emulator for Sonums - the Self-Organizing NUMber system. A number system that learns from data. Sonum8 is the 8bit version, Sonum16 for 16bit computations.
+A software emulator for Sonums - the Self-Organizing NUMber system. A number system that learns from data. Sonum8 is the 8bit version, Sonum16 for 16bit computations.
 
 # Usage
 Load the emulator with `using SoftSonum`, then train the 8 or 16bit Sonums with your data (sofar only a simple maxentropy approach is used for training, but this will be extended soon)
