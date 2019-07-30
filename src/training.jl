@@ -16,25 +16,11 @@ function trainSonum(nbit::Int,data::Union{AbstractArray{Float32},AbstractArray{F
         throw(error("Only 8/16bit supported."))
     end
 
+    sonum[1] = 0.0
+    sonum[end] = Inf
+
     if method == "maxentropy"
-
-        N = length(data)
-        r = 2^(nbit-1)-1    # amount of representable numbers excluding 0 and NaR, assuming +/- symmetry
-        n = N ÷ r
-
-        # throw away random data for equally sized chunks of data
-        data = shuffle(abs.(data[:]))[1:n*r]
-        sort!(data)
-
-        # sonum entries are always Floa64
-        sonum[1] = 0.0
-        sonum[2] = (2*data[1] + data[n] + data[n+1])/4
-        sonum[end-1] = (2*data[r*n] + data[(r-1)*n] + data[(r-1)*n-1])/4
-        sonum[end] = Inf
-
-        for i in 2:r-1
-            sonum[i+1] = (data[(i-1)*n] + data[(i-1)*n + 1] + data[i*n] + data[i*n + 1])/4
-        end
+        sonum[2:end-1] = maxentropy(2^(nbit-1)-1,abs.(data))
     #elseif method == "nextmethod"
     else
         throw(error("Training method $method not implemented yet."))
