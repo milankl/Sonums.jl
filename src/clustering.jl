@@ -1,5 +1,5 @@
 """ Quantization: Interval clustering based on maximum entropy method.  """
-function maxentropy(r::Int,data::Array{Float64,1})
+function maxentropy(r::Int,data::AbstractArray)
 
     N = length(data)
     n = N ÷ r       # number of data points per chunk
@@ -22,7 +22,7 @@ function maxentropy(r::Int,data::Array{Float64,1})
 end
 
 """ Quantization: Interval clustering based on Jenks classification method.  """
-function jenksoptim(r::Int,data::Array{Float64,1})
-    JR = JenksClassification(r,data)
+function jenksoptim(r::Int,data::AbstractArray)
+    JR = JenksClassification(r,data[:])
     return JR.centres
 end
