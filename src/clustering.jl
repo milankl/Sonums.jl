@@ -20,3 +20,9 @@ function maxentropy(r::Int,data::Array{Float64,1})
 
     return nodes
 end
+
+""" Quantization: Interval clustering based on Jenks classification method.  """
+function jenksoptim(r::Int,data::Array{Float64,1})
+    JR = JenksClassification(r,data)
+    return JR.centres
+end
