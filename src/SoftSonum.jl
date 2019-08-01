@@ -15,7 +15,7 @@ import Base: Float64, Float32, Float16, Int32, Int64, Int,
     one, zero, promote_rule, floatmin, floatmax,
     signbit, sign, isfinite, nextfloat, prevfloat, abs, inv
 
-using Printf, Random, LinearAlgebra
+using Printf, Random, LinearAlgebra, Jenks
 
 include("typedef.jl")
 include("helpers.jl")

@@ -21,7 +21,8 @@ function trainSonum(nbit::Int,data::Union{AbstractArray{Float32},AbstractArray{F
 
     if method == "maxentropy"
         sonum[2:end-1] = maxentropy(2^(nbit-1)-1,abs.(data))
-    #elseif method == "nextmethod"
+    elseif method == "jenks"
+        sonum[2:end-1] = jenksoptim(2^(nbit-1)-1,abs.(data))
     else
         throw(error("Training method $method not implemented yet."))
     end
