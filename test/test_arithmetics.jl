@@ -6,7 +6,7 @@
         @test T(f3) - T(f4) == -(T(f4) - T(f3))         # anti symmetry of subtraction
         @test zero(T) == T(f0) + T(f3)                  #
         @test T(f1) + T(f2) == T(f2) + T(f1)            # symmetry of addition
-        @test notareal(T) == one(T)/zero(T)             # infinity case
+        @test T(Inf) == one(T)/zero(T)             # infinity case
         @test zero(T) == T(0.0)*one(T)                  # zero element
         @test one(T) == one(T)*one(T)                   # one element
         @test floatmax(T) == floatmax(T)*floatmax(T)    # no overflow
