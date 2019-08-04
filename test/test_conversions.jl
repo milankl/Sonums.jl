@@ -1,6 +1,6 @@
 @testset "Conversions" begin
 
-    @testset for T in (Sonum8, Sonum16)
+    @testset for T in (Sonum8,) # Sonum16)
         @test one(T) == T(1.0)
         @test zero(T) == T(0.0)
         @test minusone(T) == T(-1.0)

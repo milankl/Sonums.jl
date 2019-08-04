@@ -2,7 +2,7 @@
     f0,f1,f2,f3,f4 = -1.0,-0.5,0.25,1.0,1.5
 
     # basic arithmetic operations
-    @testset for T in (Sonum8, Sonum16)
+    @testset for T in (Sonum8,) # Sonum16)
         @test T(f3) - T(f4) == -(T(f4) - T(f3))         # anti symmetry of subtraction
         @test zero(T) == T(f0) + T(f3)                  #
         @test T(f1) + T(f2) == T(f2) + T(f1)            # symmetry of addition
