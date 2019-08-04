@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.com/milankl/SoftSonum.jl.svg?branch=master)](https://travis-ci.com/milankl/SoftSonum.jl)
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/milankl/SoftSonum.jl?svg=true)](https://ci.appveyor.com/project/milankl/SoftSonum-jl)
+[![Build Status](https://api.cirrus-ci.com/github/milankl/SoftSonum.jl.svg)](https://cirrus-ci.com/github/milankl/SoftSonum.jl)
+
 # SoftSonum.jl
 A software emulator for Sonums - the Self-Organizing NUMber system. A number system that learns from data. Sonum8 is the 8bit version, Sonum16 for 16bit computations.
 
@@ -12,7 +16,7 @@ Alternatively, you can also use a 127-element vector (8bit) or 32767-element vec
 
 ```julia
 using SoftPosit
-posit8 = Float64.(Posit8.(UInt8.(collect(1:127))))  # creates a list of Posit8 number in (0,Inf) 
+posit8 = Float64.(Posit8.(UInt8.(collect(1:127))))  # creates a list of Posit8 number in (0,Inf)
 setSonum8(posit8)
 setUnderflow8(false)  # Posits don't underflow but Sonums do by default
 ```
@@ -63,13 +67,10 @@ julia> @btime sqrt.($a);
 So that `+,-` require ca. 2.35ms/N = __23.5ns__, `*,/` ca 1.8ms/N = __18ns__ and `sqrt` ca. __4.3ns__
 
 # Testing
-Sonums are tested against the SoftPosit library: Once set up with Posits, Sonums yield bitwise-reproducible results for +,-,*,/. 
+Sonums are tested against the SoftPosit library: Once set up with Posits, Sonums yield bitwise-reproducible results for +,-,*,/.
 
 # Installation
 In the package manager do
 ```julia
 (v1.1) pkg> add https://www.github.com/milankl/SoftSonum.jl
 ```
-
-
-
