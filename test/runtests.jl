@@ -2,7 +2,7 @@ using SoftSonum
 using SoftPosit
 using Test
 
-data = randn(10_000)
+data = randn(100_000)
 trainSonum8(abs.(data))
 fillSonum8Tables()
 
