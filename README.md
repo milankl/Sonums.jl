@@ -2,6 +2,8 @@
 [![Build Status](https://ci.appveyor.com/api/projects/status/github/milankl/SoftSonum.jl?svg=true)](https://ci.appveyor.com/project/milankl/SoftSonum-jl)
 [![Build Status](https://api.cirrus-ci.com/github/milankl/SoftSonum.jl.svg)](https://cirrus-ci.com/github/milankl/SoftSonum.jl)
 
+<img src="figs/sonum4.svg" width=300>
+
 # SoftSonum.jl
 A software emulator for Sonums - the Self-Organizing NUMber format. A number system that learns from data. Sonum8 is the 8bit version, Sonum16 for 16bit computations.
 ![circle](figs/sonum4.svg =250x)
