@@ -1,3 +1,4 @@
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.com/milankl/SoftSonum.jl.svg?branch=master)](https://travis-ci.com/milankl/SoftSonum.jl)
 [![Build Status](https://ci.appveyor.com/api/projects/status/github/milankl/SoftSonum.jl?svg=true)](https://ci.appveyor.com/project/milankl/SoftSonum-jl)
 [![Build Status](https://api.cirrus-ci.com/github/milankl/SoftSonum.jl.svg)](https://cirrus-ci.com/github/milankl/SoftSonum.jl)
@@ -6,7 +7,6 @@
 
 # SoftSonum.jl
 A software emulator for Sonums - the Self-Organizing NUMber format. A number system that learns from data. Sonum8 is the 8bit version, Sonum16 for 16bit computations.
-![circle](figs/sonum4.svg =250x)
 
 # Usage
 Load the emulator with `using SoftSonum`, then train the 8 or 16bit Sonums with your data (sofar only a simple maxentropy approach is used for training, but this will be extended soon)
@@ -19,7 +19,7 @@ Alternatively, you can also use a 127-element vector (8bit) or 32767-element vec
 
 ```julia
 using SoftPosit
-posit8 = Float64.(Posit8.(UInt8.(collect(1:127))))  # creates a list of Posit8 number in (0,Inf)
+posit8 = Float64.(Posit8.(UInt8.(collect(1:127))))  # creates a list of Posit8 numbers in (0,Inf)
 setSonum8(posit8)
 setUnderflow8(false)  # Posits don't underflow but Sonums do by default
 ```
