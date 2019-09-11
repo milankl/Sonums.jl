@@ -1,9 +1,9 @@
 function trainSonum8(data::Union{AbstractArray{Float32},AbstractArray{Float64}})
-    trainSonum(8,data,method)
+    trainSonum(8,data)
 end
 
 function trainSonum16(data::Union{AbstractArray{Float32},AbstractArray{Float64}})
-    trainSonum(16,data,method)
+    trainSonum(16,data)
 end
 
 function trainSonum(nbit::Int,data::Union{AbstractArray{Float32},AbstractArray{Float64}})
