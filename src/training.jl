@@ -1,12 +1,12 @@
-function trainSonum8(data::Union{AbstractArray{Float32},AbstractArray{Float64}},method::String="maxentropy")
+function trainSonum8(data::Union{AbstractArray{Float32},AbstractArray{Float64}})
     trainSonum(8,data,method)
 end
 
-function trainSonum16(data::Union{AbstractArray{Float32},AbstractArray{Float64}},method::String="maxentropy")
+function trainSonum16(data::Union{AbstractArray{Float32},AbstractArray{Float64}})
     trainSonum(16,data,method)
 end
 
-function trainSonum(nbit::Int,data::Union{AbstractArray{Float32},AbstractArray{Float64}},method::String)
+function trainSonum(nbit::Int,data::Union{AbstractArray{Float32},AbstractArray{Float64}})
 
     if nbit == 8
         sonum = sonum8
@@ -19,14 +19,7 @@ function trainSonum(nbit::Int,data::Union{AbstractArray{Float32},AbstractArray{F
     sonum[1] = 0.0
     sonum[end] = Inf
 
-    if method == "maxentropy"
-        sonum[2:end-1] = maxentropy(2^(nbit-1)-1,abs.(data))
-    elseif method == "jenks"
-        sonum[2:end-1] = jenksoptim(2^(nbit-1)-1,abs.(data))
-    else
-        throw(error("Training method $method not implemented yet."))
-    end
-
+    sonum[2:end-1] = maxentropy(2^(nbit-1)-1,abs.(data))
     calcBounds(nbit,sonum)
 end
 
