@@ -70,7 +70,7 @@ julia> @btime sqrt.($a);
 So that `+,-` require ca. 2.35ms/N = __23.5ns__, `*,/` ca 1.8ms/N = __18ns__ and `sqrt` ca. __4.3ns__
 
 # Testing
-Sonums are tested against the SoftPosit library: Once set up with Posits, Sonums yield bitwise-reproducible results for +,-,*,/. See [here](https://github.com/milankl/SoftSonum.jl/blob/51ceeec168508aa6b35937f89d714d9f2b2e78f6/test/runtests.jl#L46)
+Sonums are tested against the SoftPosit library: Once set up with Posits, Sonums yield bitwise-reproducible results for +,-,*,/. See [here](https://github.com/milankl/Sonums.jl/blob/51ceeec168508aa6b35937f89d714d9f2b2e78f6/test/runtests.jl#L46)
 
 # Installation
 In the package manager do
