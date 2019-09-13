@@ -5,11 +5,11 @@
 
 <img src="figs/sonum4.svg" width=300>
 
-# SoftSonum.jl
+# Sonums.jl
 A software emulator for Sonums - the Self-Organizing NUMber format. A number system that learns from data. Sonum8 is the 8bit version, Sonum16 for 16bit computations.
 
 # Usage
-Load the emulator with `using SoftSonum`, then train the 8 or 16bit Sonums with your data (a maximum entropy approach is used)
+Load the emulator with `using Sonums`, then train the 8 or 16bit Sonums with your data (a maximum entropy approach is used)
 ```julia
 data = randn(10_000_000)
 trainSonum8(data)
@@ -75,5 +75,5 @@ Sonums are tested against the SoftPosit library: Once set up with Posits, Sonums
 # Installation
 In the package manager do
 ```julia
-(v1.1) pkg> add https://www.github.com/milankl/SoftSonum.jl
+(v1.1) pkg> add https://www.github.com/milankl/Sonums.jl
 ```
