@@ -1,7 +1,7 @@
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Build Status](https://travis-ci.com/milankl/SoftSonum.jl.svg?branch=master)](https://travis-ci.com/milankl/SoftSonum.jl)
-[![Build Status](https://ci.appveyor.com/api/projects/status/github/milankl/SoftSonum.jl?svg=true)](https://ci.appveyor.com/project/milankl/SoftSonum-jl)
-[![Build Status](https://api.cirrus-ci.com/github/milankl/SoftSonum.jl.svg)](https://cirrus-ci.com/github/milankl/SoftSonum.jl)
+[![Build Status](https://travis-ci.com/milankl/Sonums.jl.svg?branch=master)](https://travis-ci.com/milankl/Sonums.jl)
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/milankl/Sonums.jl?svg=true)](https://ci.appveyor.com/project/milankl/Sonums-jl)
+[![Build Status](https://api.cirrus-ci.com/github/milankl/Sonums.jl.svg)](https://cirrus-ci.com/github/milankl/Sonums.jl)
 
 <img src="figs/sonum4.svg" width=300>
 
