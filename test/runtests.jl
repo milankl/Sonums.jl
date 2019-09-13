@@ -16,13 +16,9 @@ fillSonum8Tables()
         @test T(f1) + T(f2) == T(f2) + T(f1)            # symmetry of addition
         @test T(Inf) == one(T)/zero(T)                  # infinity case
         @test zero(T) == T(0.0)*one(T)                  # zero element
-        @test one(T) == one(T)*one(T)                   # one element
         @test floatmax(T) == floatmax(T)*floatmax(T)    # no overflow
         @test zero(T) == floatmin(T)*floatmin(T)        # but underflow
         @test T(f0)*T(f1) == -T(f0) * -T(f1)            # symmetry of multiplication
-
-        #TODO some divison testing
-        #@test T(f0)/T(f1) == -2T(f0)
     end
 end
 
