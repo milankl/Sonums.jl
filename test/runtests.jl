@@ -1,4 +1,4 @@
-using SoftSonum
+using Sonums
 using SoftPosit
 using Test
 
