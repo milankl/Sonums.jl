@@ -1,4 +1,4 @@
-module SoftSonum
+module Sonums
 
 # precompilation crashes, presumably due to large matrices being preallocated.
 __precompile__(false)
