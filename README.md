@@ -6,7 +6,7 @@
 <img src="figs/sonum4.svg" width=300>
 
 # Sonums.jl
-A software emulator for Sonums - the Self-Organizing NUMber format. A number system that learns from data. Sonum8 is the 8bit version, Sonum16 for 16bit computations.
+A software emulator for Sonums - the Self-Organizing NUMbers. A number format that learns from data. Sonum8 is the 8bit version, Sonum16 for 16bit computations.
 
 # Usage
 Load the emulator with `using Sonums`, then train the 8 or 16bit Sonums with your data (a maximum entropy approach is used)
