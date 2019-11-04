@@ -22,14 +22,6 @@ uuid = "8ba89e20-285c-5b6f-9357-94700520ee1b"
 deps = ["Markdown"]
 uuid = "b77e0a4c-d291-57a0-90e8-8db25a27a240"
 
-[[Jenks]]
-deps = ["Printf", "Random", "Statistics", "StatsBase"]
-git-tree-sha1 = "0d77d09c4b3276b92ab9136204b1e7eef3b2abe6"
-repo-rev = "master"
-repo-url = "https://github.com/milankl/Jenks.jl"
-uuid = "ea09bcba-b530-11e9-285d-9b3245f059b3"
-version = "0.1.0"
-
 [[Libdl]]
 uuid = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
 
