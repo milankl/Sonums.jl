@@ -1,7 +1,7 @@
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Build Status](https://travis-ci.com/milankl/Sonums.jl.svg?branch=master)](https://travis-ci.com/milankl/Sonums.jl)
-[![Build status](https://ci.appveyor.com/api/projects/status/u3c493f8wxw7mswd?svg=true)](https://ci.appveyor.com/project/milankl/softsonum-jl)
-[![Build Status](https://api.cirrus-ci.com/github/milankl/Sonums.jl.svg)](https://cirrus-ci.com/github/milankl/Sonums.jl)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://img.shields.io/badge/repo_status-active-brightgreen?style=flat-square)](https://www.repostatus.org/#active)
+[![Travis](https://img.shields.io/travis/com/milankl/Sonums.jl?label=Linux%20%26%20osx&logo=travis&style=flat-square)](https://travis-ci.com/milankl/Sonums.jl)
+[![AppVeyor](https://img.shields.io/appveyor/ci/milankl/softsonum-jl?label=Windows&logo=appveyor&logoColor=white&style=flat-square)](https://ci.appveyor.com/project/milankl/softsonum-jl)
+[![Cirrus CI](https://img.shields.io/cirrus/github/milankl/Sonums.jl?label=FreeBSD&logo=cirrus-ci&logoColor=white&style=flat-square)](https://cirrus-ci.com/github/milankl/Sonums.jl)
 
 <img src="figs/sonum4.svg" width=300>
 
