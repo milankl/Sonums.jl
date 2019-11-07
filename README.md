@@ -3,6 +3,8 @@
 [![AppVeyor](https://img.shields.io/appveyor/ci/milankl/softsonum-jl?label=Windows&logo=appveyor&logoColor=white&style=flat-square)](https://ci.appveyor.com/project/milankl/softsonum-jl)
 [![Cirrus CI](https://img.shields.io/cirrus/github/milankl/Sonums.jl?label=FreeBSD&logo=cirrus-ci&logoColor=white&style=flat-square)](https://cirrus-ci.com/github/milankl/Sonums.jl)
 
+[![DOI](https://zenodo.org/badge/191624340.svg)](https://zenodo.org/badge/latestdoi/191624340)
+
 # Sonums.jl
 A software emulator for Sonums - the Self-Organizing NUMbers. A number format that learns from data. Sonum8 is the 8bit version, Sonum16 for 16bit computations. This number format shares many similarities with the [type II unums](http://johngustafson.net/pdfs/BeatingFloatingPoint.pdf) developed by [John Gustafson](http://johngustafson.net/).
 
