@@ -1,7 +1,7 @@
 name = "Sonums"
 uuid = "df126d66-b6ac-11e9-1558-59a14e4bac76"
 authors = ["Milan Kloewer"]
-version = "0.1.0"
+version = "0.2.0"
 
 [deps]
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
