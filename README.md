@@ -3,8 +3,6 @@
 [![AppVeyor](https://img.shields.io/appveyor/ci/milankl/softsonum-jl?label=Windows&logo=appveyor&logoColor=white&style=flat-square)](https://ci.appveyor.com/project/milankl/softsonum-jl)
 [![Cirrus CI](https://img.shields.io/cirrus/github/milankl/Sonums.jl?label=FreeBSD&logo=cirrus-ci&logoColor=white&style=flat-square)](https://cirrus-ci.com/github/milankl/Sonums.jl)
 
-<img src="figs/sonum4.svg" width=300>
-
 # Sonums.jl
 A software emulator for Sonums - the Self-Organizing NUMbers. A number format that learns from data. Sonum8 is the 8bit version, Sonum16 for 16bit computations. This number format shares many similarities with the [type II unums](http://johngustafson.net/pdfs/BeatingFloatingPoint.pdf) developed by [John Gustafson](http://johngustafson.net/).
 
@@ -39,6 +37,15 @@ julia> Float64(a-b)
 julia> Float64(sqrt(a))
 1.0954481925887807
 ```
+
+# Theory
+
+The Sonum circle follows closely the idea of the [posit circle](http://johngustafson.net/pdfs/BeatingFloatingPoint.pdf) developed by [John Gustafson](http://johngustafson.net/). Instead of imposing a symmetry with respect to the multiplicative inverse, as proposed for the type II unums, Sonums only have a additive symmetry around 0. The 4bit Sonum circle is therefore
+
+<img src="figs/sonum4.svg" width=300>
+
+with values s₁ to s₇ to be defined. The bitpattern `0000` is reserved for 0, and `1000` for NaR (not a real). Negative numbers directly follow as the [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement) for any s₁ to s₇.
+
 # Benchmarking
 
 Unfortunately the table lookup matrices require 5GB (1GB per table, 2GB for division) of RAM for 16bit (<1Mb for 8bit). However, arithmetic operations are reasonably fast. In order to avoid caching in the benchmarking, we perform operations over arrays
