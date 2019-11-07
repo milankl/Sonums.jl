@@ -2,7 +2,6 @@
 [![Travis](https://img.shields.io/travis/com/milankl/Sonums.jl?label=Linux%20%26%20osx&logo=travis&style=flat-square)](https://travis-ci.com/milankl/Sonums.jl)
 [![AppVeyor](https://img.shields.io/appveyor/ci/milankl/softsonum-jl?label=Windows&logo=appveyor&logoColor=white&style=flat-square)](https://ci.appveyor.com/project/milankl/softsonum-jl)
 [![Cirrus CI](https://img.shields.io/cirrus/github/milankl/Sonums.jl?label=FreeBSD&logo=cirrus-ci&logoColor=white&style=flat-square)](https://cirrus-ci.com/github/milankl/Sonums.jl)
-
 [![DOI](https://zenodo.org/badge/191624340.svg)](https://zenodo.org/badge/latestdoi/191624340)
 
 # Sonums.jl
